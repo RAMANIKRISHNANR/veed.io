@@ -2,10 +2,21 @@ import React, { useState } from 'react';
 
 const VideoThumbnails = () => {
   const [videos, setVideos] = useState([]);
-
+  const apiKey = 'fTj2NO2kZFTkNnrk9FLHz8dpMidvGbtBy3feCBOuorkVrGyRcX3o2AOd';
+  const apiURL = `https://api.pexels.com/videos/search?query=mountain&per_page=3&page=1`;
 
   const fetchVideos = async () => {
-
+    try {
+      const response = await fetch(apiURL, {
+        headers: {
+          Authorization: apiKey,
+        },
+      });
+      const data = await response.json();
+      setVideos(data.videos);
+    } catch (error) {
+      console.error(error);
+    }
   };
   fetchVideos();
 

@@ -2,13 +2,24 @@ import React, { useState } from 'react';
 
 const ThumbnailUploader = () => {
   const [videos, setVideos] = useState([]);
-
+  const apiKey = 'fTj2NO2kZFTkNnrk9FLHz8dpMidvGbtBy3feCBOuorkVrGyRcX3o2AOd';
+  const apiURL = `https://api.pexels.com/videos/search?query=nature&per_page=3&page=1`;
 
   const fetchVideos = async () => {
+    try {
+      const response = await fetch(apiURL, {
+        headers: {
+          Authorization: apiKey,
+        },
+      });
+      const data = await response.json();
+      setVideos(data.videos);
 
+    } catch (error) {
+      console.error(error);
+    }
   };
   fetchVideos();
-
 
   const handleThumbnailClick = (videoUrl) => {
     const iframe = document.createElement('iframe');
