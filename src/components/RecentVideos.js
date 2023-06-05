@@ -72,7 +72,7 @@ const VideoThumbnails = () => {
               borderBottomRightRadius:'8px',
               borderBottomLeftRadius:'8px'
             }}>
-              Project Name - {index + 1}
+              video - {index + 1}
             </div>
           </div>
         ))}
